@@ -177,7 +177,7 @@ magic-file: /usr/share/file/magic
 # af-packet support
 # Set threads to > 1 to use PACKET_FANOUT support
 af-packet:
-  - interface: default
+  - interface: eth0
     threads: 2
     cluster-id: 99
     cluster-type: cluster_cpu
