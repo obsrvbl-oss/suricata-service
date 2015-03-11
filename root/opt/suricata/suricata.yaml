@@ -62,7 +62,7 @@ host-mode: auto
 # The default logging directory.  Any log or output file will be
 # placed here if its not specified with a full path name.  This can be
 # overridden with the -l command line parameter.
-default-log-dir: /opt/obsrvbl/suricata/logs
+default-log-dir: /opt/suricata/logs
 
 # Unix command socket can be used to pass commands to suricata.
 # An external tool can then connect to get information from suricata
@@ -467,8 +467,8 @@ rule-files:
  - local.rules
  - downloaded.rules
 
-classification-file: /opt/obsrvbl/suricata/classification.config
-reference-config-file: /opt/obsrvbl/suricata/reference.config
+classification-file: /opt/suricata/classification.config
+reference-config-file: /opt/suricata/reference.config
 
 # Holds variables that would be used by the engine.
 vars:
