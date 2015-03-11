@@ -85,7 +85,7 @@ outputs:
 
   # Extensible Event Format (nicknamed EVE) event log in JSON format
   - eve-log:
-      enabled: no
+      enabled: yes
       type: file #file|syslog|unix_dgram|unix_stream
       filename: eve.json
       # the following are valid when type: syslog above
@@ -98,7 +98,7 @@ outputs:
 
   # alert output for use with Barnyard2
   - unified2-alert:
-      enabled: yes
+      enabled: no
       filename: unified2.alert
 
       # File size limit.  Can be specified in kb, mb, gb.  Just a number
@@ -151,7 +151,7 @@ outputs:
   # The interval field (in seconds) tells after how long output will be written
   # on the log file.
   - stats:
-      enabled: yes
+      enabled: no
       filename: stats.log
       interval: 8
 
