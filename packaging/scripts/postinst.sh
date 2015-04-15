@@ -1,5 +1,5 @@
 #!/bin/sh
-useradd --create-home --home-dir /opt/suricata suricata
+useradd --system --create-home --home-dir /opt/suricata suricata
 mkdir -p /opt/suricata/logs
 cp /etc/nsm/templates/suricata/* /opt/suricata
 chown -R suricata /opt/suricata
