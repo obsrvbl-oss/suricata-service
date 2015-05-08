@@ -462,7 +462,7 @@ pcap-file:
 
 # Set the default rule path here to search for the files.
 # if not set, it will look at the current working dir
-default-rule-path: /etc/nsm/rules/
+default-rule-path: /opt/suricata/rules/
 rule-files:
  - local.rules
  - downloaded.rules
