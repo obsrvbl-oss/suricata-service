@@ -1,18 +1,25 @@
-#!/bin/bash
+#!/bin/sh
 
-# run every ten minutes.
-
+LOG_FILE=/opt/suricata/logs/eve.json
 DATE=$(date +%s)
-PID=$(ps ax | grep "suricata -c suricata.yaml" | grep -v grep | awk '{print $1}')
+PID=$(pidof "/usr/bin/suricata")
 
-cd logs
-mv eve.json eve.json.$DATE
+# Exit early if the log file doesn't exist
+if [ ! -e $LOG_FILE ]
+then
+    echo "$LOG_FILE does not exist"
+    exit 0
+fi
 
-# sending a HUP to suricata tells it to re-open its log files
+# Also exit early if the log file is 0 bytes
+if [ ! -s $LOG_FILE ]
+then
+    echo "$LOG_FILE is 0 bytes"
+    exit 0
+fi
+
+
+# Rename the current log file and then send suricata a HUP signal to tell it
+# to open a new log file.
+mv $LOG_FILE $LOG_FILE.$DATE.archived
 /bin/kill -HUP $PID
-
-# TODO:
-# do something with the eve.json.$DATE file
-
-rm eve.json.$DATE
-

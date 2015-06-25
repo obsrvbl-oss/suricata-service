@@ -10,6 +10,8 @@ deb:
 		--category admin --force --deb-compression bzip2 \
 		--description "Suricata service script" --license "GPL v2" \
 		--depends libcap2-bin \
+		--depends sysvinit-utils \
+		--deb-recommends ona-service \
 		--after-install packaging/scripts/postinst.sh root/=/
 
 clean:
