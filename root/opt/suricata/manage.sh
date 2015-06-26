@@ -29,8 +29,11 @@ case $action in
 		;;
 
 	reload-config)
-		# SIGUSR2 == suricata reloads its configuration
-		/bin/kill -USR2 $PID
+		# SIGUSR2 + "- rule-reload: true" in the config will do a
+		# live reload of the ruleset. However, it triggers a memory
+		# bug that is only fixed in 2.1.
+		# So for now just SIGTERM and have upstart restart us.
+		/bin/kill -TERM $PID
 		;;
 
 	*)
