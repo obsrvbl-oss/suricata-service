@@ -21,7 +21,6 @@ case $action in
 		    exit 0
 		fi
 
-
 		# Rename the current log file and then send suricata a
 		# HUP signal to tell it to open a new log file.
 		mv $LOG_FILE $LOG_FILE.$DATE.archived
