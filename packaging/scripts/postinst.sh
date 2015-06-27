@@ -29,6 +29,6 @@ cp /etc/nsm/templates/suricata/*.config $SURICATA_DIR
 chown -R suricata:suricata $SURICATA_DIR
 chown suricata:suricata $BINARY_PATH
 chmod 0750 $BINARY_PATH
-chmod 0750 $SURICATA_DIR/logcycle.sh
+chmod 0754 $SURICATA_DIR/manage.sh
 chmod g+w $SURICATA_DIR/logs
 setcap cap_net_raw,cap_net_admin=eip $BINARY_PATH
