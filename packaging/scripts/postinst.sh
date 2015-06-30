@@ -24,9 +24,11 @@ addgroup obsrvbl_ona suricata
 mkdir -p $SURICATA_DIR/rules
 mkdir -p $SURICATA_DIR/logs
 cp /etc/nsm/templates/suricata/*.config $SURICATA_DIR
+cp /etc/suricata/*.config $SURICATA_DIR
 
 # Set permissions
 chown -R suricata:suricata $SURICATA_DIR
+chown -R obsrvbl_ona $SURICATA_DIR/rules
 chown suricata:suricata $BINARY_PATH
 chmod 0750 $BINARY_PATH
 chmod 0754 $SURICATA_DIR/manage.sh

@@ -94,7 +94,8 @@ outputs:
       #level: Info ## possible levels: Emergency, Alert, Critical,
                    ## Error, Warning, Notice, Info, Debug
       types:
-        - alert
+        - alert:
+            packet: yes
 
   # alert output for use with Barnyard2
   - unified2-alert:
