@@ -6,7 +6,7 @@ PID=$(pidof "/usr/bin/suricata")
 
 action=$1
 case $action in
-	cycle-logs)
+	rotate-logs)
 		# Exit early if the log file doesn't exist
 		if [ ! -e $LOG_FILE ]
 		then
@@ -36,7 +36,7 @@ case $action in
 		;;
 
 	*)
-		echo "bad action '$action'. Try: cycle-logs, reload-config"
+		echo "bad action '$action'. Try: rotate-logs, reload-config"
 		echo "   ex: $0 reload-config"
 		exit 2
 esac
