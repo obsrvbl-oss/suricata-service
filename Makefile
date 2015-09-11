@@ -19,14 +19,14 @@ build_suricata:
 	(cd suricata; ./autogen.sh)
 	(cd suricata; \
 		./configure \
-			--prefix=${TARGET_ROOT}/usr \
-			--sysconfdir=${TARGET_ROOT}/etc \
-			--localstatedir=${TARGET_ROOT}/var \
+			--prefix=/usr \
+			--sysconfdir=/etc \
+			--localstatedir=/var \
 			--enable-non-bundled-htp \
 			--with-libhtp-includes=${TARGET_ROOT}/include \
 			--with-libhtp-libraries=${TARGET_ROOT}/lib)
 	make -C suricata
-	make -C suricata install-full
+	make -C suricata install-full DESTDIR=${TARGET_ROOT}
 
 deb:
 	mkdir -p packaging/output
@@ -53,6 +53,8 @@ deb:
 		root/=/
 
 clean:
-	(cd libhtp; git clean -fd)
-	(cd suricata; git clean -fd)
+	rm -rf packaging/output
+	rm -rf suricata/
+	rm -rf libhtp/
+	git submodule update
 	git clean -fd
