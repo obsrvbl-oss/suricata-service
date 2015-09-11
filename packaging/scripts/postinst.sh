@@ -23,7 +23,6 @@ addgroup obsrvbl_ona suricata
 # Create locations for rules, logs, and templates
 mkdir -p $SURICATA_DIR/rules
 mkdir -p $SURICATA_DIR/logs
-cp /etc/nsm/templates/suricata/*.config $SURICATA_DIR
 cp /etc/suricata/*.config $SURICATA_DIR
 
 # Set permissions
