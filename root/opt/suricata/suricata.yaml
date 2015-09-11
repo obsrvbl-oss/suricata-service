@@ -191,7 +191,7 @@ legacy:
 
 # You can specify a threshold config file by setting "threshold-file"
 # to the path of the threshold config file:
-# threshold-file: /etc/suricata/threshold.config
+threshold-file: /opt/suricata/threshold.config
 
 detect-engine:
   - profile: medium
