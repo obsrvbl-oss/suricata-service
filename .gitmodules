@@ -1,0 +1,3 @@
+[submodule "suricata"]
+	path = suricata
+	url = git@github.com:inliniac/suricata.git
