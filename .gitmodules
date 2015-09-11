@@ -1,3 +1,6 @@
 [submodule "suricata"]
 	path = suricata
 	url = git@github.com:inliniac/suricata.git
+[submodule "libhtp"]
+	path = libhtp
+	url = git@github.com:OISF/libhtp.git
