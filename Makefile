@@ -49,6 +49,7 @@ deb:
 		--depends sysvinit-utils \
 		--deb-recommends ona-service \
 		--after-install packaging/scripts/postinst.sh \
+		--deb-no-default-config-files \
 		root/=/
 
 clean:
