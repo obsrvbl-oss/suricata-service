@@ -23,6 +23,8 @@ build_suricata:
 			--sysconfdir=/etc \
 			--localstatedir=/var \
 			--enable-non-bundled-htp \
+			--enable-af-packet \
+			--disable-coccinelle \
 			--with-libhtp-includes=${TARGET_ROOT}/include \
 			--with-libhtp-libraries=${TARGET_ROOT}/lib)
 	make -C suricata
