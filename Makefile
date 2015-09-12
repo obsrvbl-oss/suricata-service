@@ -1,11 +1,9 @@
 VERSION := 0.01
 TARGET_ROOT = $(shell pwd)/root
-LIBHTP_PREFIX = ${TARGET_ROOT}/usr/local
 
 all:
 	@echo please specify a target
 
-build_suricata: export PKG_CONFIG_PATH = ${LIBHTP_PREFIX}/lib/pkgconfig
 build_suricata:
 	mkdir -p ${TARGET_ROOT}/usr
 	mkdir -p ${TARGET_ROOT}/etc
