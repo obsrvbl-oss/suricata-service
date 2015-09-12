@@ -54,6 +54,29 @@ deb:
 		--deb-no-default-config-files \
 		root/=/
 
+rpm:
+	mkdir -p packaging/output
+	fpm \
+		-s dir \
+		-t rpm \
+		-n suricata-service \
+		-v ${VERSION} \
+		-p packaging/output/suricata-service.rpm \
+		-a all \
+		--category admin \
+		--force \
+		--rpm-compression bzip2 \
+		--description "Suricata service script" \
+		--license "GPL v2" \
+		--depends libcap-ng \
+		--depends libpcap \
+		--depends libnet \
+		--depends libyaml \
+		--depends pcre \
+		--depends zlib \
+		--after-install packaging/scripts/postinst.sh \
+		root/=/
+
 clean:
 	rm -rf packaging/output
 	rm -rf suricata/
