@@ -179,12 +179,7 @@ magic-file: /usr/share/file/magic
 # Set threads to > 1 to use PACKET_FANOUT support
 af-packet:
   - interface: eth0
-    threads: 2
-    cluster-id: 99
-    cluster-type: cluster_cpu
-    defrag: yes
-    use-mmap: yes
-    #ring-size: 20000
+    threads: 1
 
 legacy:
   uricontent: enabled
