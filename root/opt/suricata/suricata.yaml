@@ -180,6 +180,10 @@ magic-file: /usr/share/file/magic
 af-packet:
   - interface: eth0
     threads: 1
+    cluster-id: 99
+    cluster-type: cluster_cpu
+    defrag: yes
+    use-mmap: yes
 
 legacy:
   uricontent: enabled

@@ -68,6 +68,7 @@ rpm:
 		--rpm-compression bzip2 \
 		--description "Suricata service script" \
 		--license "GPL v2" \
+		--depends jansson \
 		--depends libcap-ng \
 		--depends libpcap \
 		--depends libnet \
