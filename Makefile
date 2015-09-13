@@ -1,25 +1,33 @@
 VERSION := 0.01
 TARGET_ROOT = $(shell pwd)/root
+LIBHTP_PREFIX = ${TARGET_ROOT}/usr/local
 
 all:
 	@echo please specify a target
 
+build_libhtp:
+	mkdir -p ${LIBHTP_PREFIX}/lib
+	(cd libhtp; ./autogen.sh)
+	(cd libhtp; ./configure --prefix=${LIBHTP_PREFIX})
+	make -C libhtp
+	make -C libhtp install
+
+build_suricata: build_libhtp
+build_suricata: export PKG_CONFIG_PATH = ${LIBHTP_PREFIX}/lib/pkgconfig
 build_suricata:
 	mkdir -p ${TARGET_ROOT}/usr
 	mkdir -p ${TARGET_ROOT}/etc
 	mkdir -p ${TARGET_ROOT}/var
-	cp -ar libhtp/ suricata/
 	(cd suricata; ./autogen.sh)
 	(cd suricata; \
 		./configure \
 			--prefix=/usr \
 			--sysconfdir=/etc \
 			--localstatedir=/var \
-			--disable-gccmarch-native \
+			--enable-non-bundled-htp \
 			--enable-af-packet \
-			--enable-gccprotect \
 			--disable-coccinelle)
-	make -C suricata
+	LD_RUN_PATH="/usr/local/lib" make -C suricata
 	make -C suricata install-full DESTDIR=${TARGET_ROOT}
 
 deb:
