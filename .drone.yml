@@ -1,9 +1,7 @@
-clone:
-  recursive: true
-
 build:
   image: obsrvbl/suricata-$$SURICATA_IMAGE
   commands:
+    - git submodule update --init --recursive
     - make build_suricata
     - make rpm
 
