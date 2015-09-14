@@ -1,7 +1,12 @@
-image: obsrvbl/suricata-centos-6
-script:
-  - make build_suricata
-  - make rpm
+build:
+  image: obsrvbl/suricata-$$SURICATA_IMAGE
+  commands:
+    - make build_suricata
+    - make rpm
+
+matrix:
+  SURICATA_IMAGE:
+    - centos-6
 
 notify:
   email:
