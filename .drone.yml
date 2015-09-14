@@ -1,0 +1,22 @@
+image: obsrvbl/suricata-centos-6
+script:
+  - make build_suricata
+  - make rpm
+
+notify:
+  email:
+    recipients:
+      - engineering@obsrvbl.com
+
+publish:
+  s3:
+    acl: public-read
+    region: us-east-1
+    bucket: onstatic
+    access_key: $$AWS_KEY
+    secret_key: $$AWS_SECRET
+    source: packaging/output
+    target: suricata-service/$DRONE_BRANCH/
+    recursive: true
+    when:
+      owner: obsrvbl
