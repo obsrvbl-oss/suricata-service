@@ -1,8 +1,7 @@
-clone:
-  recursive: true
-
 build:
   image: obsrvbl/suricata-$$SURICATA_IMAGE
+  clone:
+    recursive: true
   commands:
     - make build_suricata
     - make rpm
