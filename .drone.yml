@@ -1,3 +1,6 @@
+clone:
+  recursive: true
+
 build:
   image: obsrvbl/suricata-$$SURICATA_IMAGE
   commands:
