@@ -4,10 +4,12 @@ build:
     - git submodule update --init --recursive
     - make build_suricata
     - make rpm
+    - make deb
 
 matrix:
   SURICATA_IMAGE:
     - centos-6
+    - ubuntu-trusty
 
 notify:
   email:
