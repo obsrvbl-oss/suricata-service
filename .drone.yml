@@ -1,8 +1,6 @@
 build:
   image: obsrvbl/suricata-$$SURICATA_IMAGE:latest
   environment:
-    - AWS_ACCESS_KEY_ID=$$AWS_KEY
-    - AWS_SECRET_ACCESS_KEY=$$AWS_SECRET
     - AWS_DEFAULT_REGION=us-east-1
   commands:
     - git submodule update --init --recursive
