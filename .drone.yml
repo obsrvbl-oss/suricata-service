@@ -7,7 +7,6 @@ build:
     - make build_suricata
     - if [ $$SURICATA_IMAGE = "centos-6" ]; then make rpm; else make deb; fi
     - pip install awscli
-    - env
     - aws s3 cp "packaging/output" "s3://onstatic/suricata-service/$DRONE_BRANCH/" --recursive --acl="public-read"
 
 matrix:
