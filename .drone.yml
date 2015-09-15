@@ -1,10 +1,16 @@
+env:
+  - AWS_ACCESS_KEY_ID=$$AWS_KEY
+  - AWS_SECRET_ACCESS_KEY=$$AWS_SECRET
+  - AWS_DEFAULT_REGION=us-east-1
+
 build:
-  image: obsrvbl/suricata-$$SURICATA_IMAGE
+  image: obsrvbl/suricata-$$SURICATA_IMAGE:latest
   commands:
     - git submodule update --init --recursive
     - make build_suricata
-    - make rpm
-    - make deb
+    - if [ $$SURICATA_IMAGE = "centos-6" ]; then make rpm; else make deb; fi
+    - pip install awscli
+    - aws s3 cp "packaging/output" "s3://onstatic/suricata-service/$DRONE_BRANCH/" --recursive --acl="public-read"
 
 matrix:
   SURICATA_IMAGE:
@@ -15,16 +21,3 @@ notify:
   email:
     recipients:
       - engineering@obsrvbl.com
-
-publish:
-  s3:
-    acl: public-read
-    region: us-east-1
-    bucket: onstatic
-    access_key: $$AWS_KEY
-    secret_key: $$AWS_SECRET
-    source: packaging/output
-    target: suricata-service/$DRONE_BRANCH/
-    recursive: true
-    when:
-      owner: obsrvbl
