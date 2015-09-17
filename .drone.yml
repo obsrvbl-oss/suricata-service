@@ -1,5 +1,5 @@
 build:
-  image: obsrvbl/suricata-$$SURICATA_IMAGE:latest
+  image: obsrvbl/docker-images:suricata-$$SURICATA_IMAGE
   environment:
     - AWS_DEFAULT_REGION=us-east-1
   commands:
@@ -12,7 +12,7 @@ build:
 matrix:
   SURICATA_IMAGE:
     - centos-6
-    - ubuntu-trusty
+    - ubuntu-14.04
 
 notify:
   email:
