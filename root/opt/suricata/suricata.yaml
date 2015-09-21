@@ -179,19 +179,18 @@ magic-file: /usr/share/file/magic
 # Set threads to > 1 to use PACKET_FANOUT support
 af-packet:
   - interface: eth0
-    threads: 2
+    threads: 1
     cluster-id: 99
     cluster-type: cluster_cpu
     defrag: yes
     use-mmap: yes
-    #ring-size: 20000
 
 legacy:
   uricontent: enabled
 
 # You can specify a threshold config file by setting "threshold-file"
 # to the path of the threshold config file:
-# threshold-file: /etc/suricata/threshold.config
+threshold-file: /opt/suricata/threshold.config
 
 detect-engine:
   - profile: medium
