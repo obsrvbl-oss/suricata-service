@@ -1,9 +1,11 @@
+clone:
+    recursive: true
+
 build:
   image: obsrvbl/docker-images:suricata-$$SURICATA_IMAGE
   environment:
     - AWS_DEFAULT_REGION=us-east-1
   commands:
-    - git submodule update --init --recursive
     - make build_suricata
     - if [ $$SURICATA_IMAGE = "centos-6" ]; then make rpm; else make deb; fi
     - pip install awscli
