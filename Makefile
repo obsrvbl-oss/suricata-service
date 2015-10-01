@@ -26,7 +26,8 @@ build_suricata:
 			--localstatedir=/var \
 			--enable-non-bundled-htp \
 			--enable-af-packet \
-			--disable-coccinelle)
+			--disable-coccinelle \
+			--disable-gccmarch-native)
 	LD_RUN_PATH="/usr/local/lib" make -C suricata
 	make -C suricata install-full DESTDIR=${TARGET_ROOT}
 
