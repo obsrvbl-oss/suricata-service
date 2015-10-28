@@ -1,5 +1,4 @@
 clone:
-    depth: 1
     recursive: true
 
 build:
