@@ -1,20 +1,28 @@
+clone:
+    depth: 1
+    recursive: true
+
 build:
   image: obsrvbl/docker-images:suricata-$$SURICATA_IMAGE
-  environment:
-    - AWS_DEFAULT_REGION=us-east-1
   commands:
-    - git submodule update --init --recursive
     - make build_suricata
     - if [ $$SURICATA_IMAGE = "centos-6" ]; then make rpm; else make deb; fi
-    - pip install awscli
-    - aws s3 cp "packaging/output" "s3://onstatic/suricata-service/$DRONE_BRANCH/" --recursive --acl="public-read"
 
 matrix:
   SURICATA_IMAGE:
     - centos-6
     - ubuntu-14.04
 
-notify:
-  email:
-    recipients:
-      - engineering@obsrvbl.com
+publish:
+  s3:
+    acl: "public-read"
+    region: "us-east-1"
+    bucket: "onstatic"
+    source: "packaging/output"
+    target: "suricata-service/$$BRANCH/"
+    recursive: true
+
+# notify:
+#   email:
+#     recipients:
+#       - engineering@obsrvbl.com
