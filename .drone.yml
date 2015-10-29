@@ -1,5 +1,3 @@
-debug: true
-
 clone:
   recursive: true
   depth: 500
