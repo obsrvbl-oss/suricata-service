@@ -1,5 +1,6 @@
 clone:
-    recursive: true
+  recursive: true
+  depth: 500
 
 build:
   image: obsrvbl/docker-images:suricata-$$SURICATA_IMAGE
@@ -21,7 +22,13 @@ publish:
     target: "suricata-service/$$BRANCH/"
     recursive: true
 
-# notify:
-#   email:
-#     recipients:
-#       - engineering@obsrvbl.com
+notify:
+  slack_blame:
+  token: $$SLACK_TOKEN
+  channel: "#github"
+  success:
+    icon: ":not-kirby:"
+    message: "Successful build!"
+  failure:
+    icon: ":trolleybus:"
+    message: "The build is broken."
