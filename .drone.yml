@@ -1,5 +1,3 @@
-debug: true
-
 clone:
   recursive: true
   depth: 500
@@ -26,11 +24,11 @@ publish:
 
 notify:
   slack_blame:
-  token: $$SLACK_TOKEN
-  channel: "#github"
-  success:
-    icon: ":not-kirby:"
-    message: "Successful build!"
-  failure:
-    icon: ":trolleybus:"
-    message: "The build is broken."
+    token: $$SLACK_TOKEN
+    channel: "#github"
+    success:
+      icon: ":not-kirby:"
+      message: "Successful build!"
+    failure:
+      icon: ":trolleybus:"
+      message: "The build is broken."
