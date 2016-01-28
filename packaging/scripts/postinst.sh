@@ -35,3 +35,6 @@ if getent passwd | grep -q "^obsrvbl_ona:"; then
     usermod -a -G suricata obsrvbl_ona
     chown -R obsrvbl_ona $SURICATA_DIR/rules
 fi
+
+# Update library paths
+ldconfig
