@@ -62,7 +62,7 @@ rpm:
 		-t rpm \
 		-n suricata-service \
 		-v ${VERSION} \
-		-p packaging/output/suricata-service.rpm \
+		-p packaging/output/suricata-service-${EL_VERSION}.rpm \
 		-a all \
 		--category admin \
 		--force \
