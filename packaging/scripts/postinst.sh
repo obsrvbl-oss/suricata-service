@@ -41,17 +41,17 @@ ldconfig
 
 # Install the Upstart service
 # systemd (RHEL style)
-if [ -d /usr/lib/systemd/system ]; then
+if [ -d /usr/lib/systemd/system ] && [ -e /usr/bin/systemctl ]; then
     cp $SURICATA_DIR/system/suricata.service /usr/lib/systemd/system
     ln -s /usr/lib/systemd/system/suricata.service /etc/systemd/system/suricata.service
-    systemctl daemon-reload
-    systemctl start suricata.service
+    /usr/bin/systemctl daemon-reload
+    /usr/bin/systemctl start suricata.service
 # systemd (Debian style)
-elif [ -d /lib/systemd/system ]; then
+elif [ -d /lib/systemd/system ] && [ -e /bin/systemctl ]; then
     cp $SURICATA_DIR/system/suricata.service /lib/systemd/system
     ln -s /lib/systemd/system/suricata.service /etc/systemd/system/suricata.service
-    systemctl daemon-reload
-    systemctl start suricata.service
+    /bin/systemctl daemon-reload
+    /bin/systemctl start suricata.service
 # upstart
 else
     cp $SURICATA_DIR/system/suricata.conf /etc/init/
