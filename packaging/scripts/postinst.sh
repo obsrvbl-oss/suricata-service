@@ -38,3 +38,8 @@ fi
 
 # Update library paths
 ldconfig
+
+# Install the Upstart service
+cp $SURICATA_DIR/system/suricata.conf /etc/init/
+initctl reload-configuration
+initctl start suricata
