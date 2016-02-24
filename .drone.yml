@@ -6,10 +6,11 @@ build:
   image: obsrvbl/docker-images:suricata-$$SURICATA_IMAGE
   commands:
     - make build_suricata
-    - if [ $$SURICATA_IMAGE = "centos-6" ]; then make rpm; else make deb; fi
+    - if [ $$SURICATA_IMAGE = "centos-6" ]; then make rpm EL_VERSION=6; elif [ $$SURICATA_IMAGE = "centos-7" ]; then make rpm EL_VERSION=7; else make deb; fi
 
 matrix:
   SURICATA_IMAGE:
+    - centos-7
     - centos-6
     - ubuntu-14.04
 
