@@ -9,7 +9,7 @@ The .deb should work with Ubuntu 12.04 and 14.04. The .rpm should work with RHEL
 
 The packages to install are listed below. On RHEL / CentOS you will need to first install the [EPEL repository](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) to get some of these packages. For more information on building Suricata, see the [Suricata wiki](https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Suricata_Installation).
 
-Ubuntu systems | RHEL 6 systems
+Ubuntu systems | RHEL / CentOS systems
 -------------|-------------
 autoconf | autoconf
 automake | automake
