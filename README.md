@@ -3,13 +3,14 @@
 This project contains code to build .deb and .rpm packages for the [Suricata](http://suricata-ids.org/) IDS.
 The packages will allow you to install Suricata in a manner that is compatible with the [Observable Networks](https://observable.net) monitoring service.
 
-The .deb should work with Ubuntu 12.04 and 14.04. The .rpm should work with RHEL 6 and compatible (e.g. CentOS 6) distributions.
+The .deb should work with Ubuntu 12.04 and 14.04.
+The .rpm should work with RHEL-compatible distributions (like CentOS). Versions 6 and 7 are supported.
 
 ## Build instructions
 
 The packages to install are listed below. On RHEL / CentOS you will need to first install the [EPEL repository](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) to get some of these packages. For more information on building Suricata, see the [Suricata wiki](https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Suricata_Installation).
 
-Ubuntu systems | RHEL 6 systems
+Ubuntu systems | RHEL / CentOS systems
 -------------|-------------
 autoconf | autoconf
 automake | automake
