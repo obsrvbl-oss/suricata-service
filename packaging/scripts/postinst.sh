@@ -34,6 +34,7 @@ setcap cap_net_raw,cap_net_admin=eip $BINARY_PATH
 if getent passwd | grep -q "^obsrvbl_ona:"; then
     usermod -a -G suricata obsrvbl_ona
     chown -R obsrvbl_ona $SURICATA_DIR/rules
+fi
 
 if [ -e /opt/obsrvbl-ona/config.local ]; then
     echo 'OBSRVBL_SERVICE_SURICATA="false"' >> /opt/obsrvbl-ona/config.local
