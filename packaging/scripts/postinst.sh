@@ -34,6 +34,9 @@ setcap cap_net_raw,cap_net_admin=eip $BINARY_PATH
 if getent passwd | grep -q "^obsrvbl_ona:"; then
     usermod -a -G suricata obsrvbl_ona
     chown -R obsrvbl_ona $SURICATA_DIR/rules
+
+if [ -e /opt/obsrvbl-ona/config.local ]; then
+    echo 'OBSRVBL_SERVICE_SURICATA="false"' >> /opt/obsrvbl-ona/config.local
 fi
 
 # Update library paths
@@ -45,9 +48,11 @@ if [ -e /bin/systemctl ]; then
     /bin/systemctl daemon-reload
     /bin/systemctl enable suricata.service
     /bin/systemctl start suricata.service
+    /bin/systemctl restart obsrvbl-ona.service || true
 # Install the upstart service
 else
     cp $SURICATA_DIR/system/suricata.conf /etc/init/
     initctl reload-configuration
     initctl start suricata
+    initctl restart obsrvbl-ona || true
 fi
