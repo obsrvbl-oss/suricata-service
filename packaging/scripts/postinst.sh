@@ -37,7 +37,7 @@ if getent passwd | grep -q "^obsrvbl_ona:"; then
 fi
 
 if [ -e /opt/obsrvbl-ona/config.local ]; then
-    echo 'OBSRVBL_SERVICE_SURICATA="false"' >> /opt/obsrvbl-ona/config.local
+    echo 'OBSRVBL_SERVICE_SURICATA="true"' >> /opt/obsrvbl-ona/config.local
 fi
 
 # Update library paths
