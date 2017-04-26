@@ -36,6 +36,10 @@ if getent passwd | grep -q "^obsrvbl_ona:"; then
     chown -R obsrvbl_ona $SURICATA_DIR/rules
 fi
 
+if [ -e /opt/obsrvbl-ona/config.local ]; then
+    echo 'OBSRVBL_SERVICE_SURICATA="true"' >> /opt/obsrvbl-ona/config.local
+fi
+
 # Update library paths
 ldconfig
 
@@ -45,9 +49,11 @@ if [ -e /bin/systemctl ]; then
     /bin/systemctl daemon-reload
     /bin/systemctl enable suricata.service
     /bin/systemctl start suricata.service
+    /bin/systemctl restart obsrvbl-ona.service || true
 # Install the upstart service
 else
     cp $SURICATA_DIR/system/suricata.conf /etc/init/
     initctl reload-configuration
     initctl start suricata
+    initctl restart obsrvbl-ona || true
 fi
