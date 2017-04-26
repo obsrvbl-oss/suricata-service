@@ -50,6 +50,8 @@ deb:
 		--depends libcap2-bin \
 		--depends libyaml-0-2 \
 		--depends sysvinit-utils \
+		--depends python2.7 \
+		--depends python-yaml \
 		--deb-recommends ona-service \
 		--after-install packaging/scripts/postinst.sh \
 		--deb-no-default-config-files \
@@ -76,6 +78,8 @@ rpm:
 		--depends libyaml \
 		--depends pcre \
 		--depends zlib \
+		--depends python2.7 \
+		--depends python-yaml \
 		--after-install packaging/scripts/postinst.sh \
 		root/=/
 
