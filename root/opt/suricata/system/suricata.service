@@ -1,12 +1,10 @@
 [Unit]
-Description=OSSEC HIDS (Observable Networks distribution)
-After=network.target 
+Description=Suricata IDS (Observable Networks distribution)
+After=network.target
 
 [Service]
-User=suricata
-Group=suricata
 WorkingDirectory=/opt/suricata/
-ExecStart=/usr/bin/suricata -c /opt/suricata/suricata.yaml --af-packet
+ExecStart=/opt/suricata/run_suricata.sh
 
 [Install]
 WantedBy=multi-user.target
