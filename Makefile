@@ -74,10 +74,10 @@ rpm:
 		--depends libcap-ng \
 		--depends libpcap \
 		--depends libnet \
+		--depends libyaml \
 		--depends pcre \
 		--depends zlib \
 		--depends python2.7 \
-		--depends python-yaml \
 		--after-install packaging/scripts/postinst.sh \
 		root/=/
 
