@@ -1,0 +1,9 @@
+%YAML 1.1
+---
+af-packet:
+- cluster-id: 99
+  cluster-type: cluster_flow
+  defrag: true
+  interface: eth0
+  threads: 1
+  use-mmap: true
