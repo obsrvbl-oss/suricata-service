@@ -1,6 +1,7 @@
 VERSION := 0.01
 TARGET_ROOT = $(shell pwd)/root
 LIBHTP_PREFIX = ${TARGET_ROOT}/usr/local
+ARCH ?= amd64
 
 all:
 	@echo please specify a target
@@ -39,7 +40,7 @@ deb:
 		-n suricata-service \
 		-v ${VERSION} \
 		-p packaging/output/suricata-service.deb \
-		-a all \
+		-a ${ARCH} \
 		--category admin \
 		--force \
 		--deb-compression bzip2 \
@@ -64,7 +65,7 @@ rpm:
 		-n suricata-service \
 		-v ${VERSION} \
 		-p packaging/output/suricata-service-${EL_VERSION}.rpm \
-		-a all \
+		-a ${ARCH} \
 		--category admin \
 		--force \
 		--rpm-compression bzip2 \
