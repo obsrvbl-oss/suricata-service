@@ -44,8 +44,9 @@ deb:
 		--category admin \
 		--force \
 		--deb-compression bzip2 \
-		--description "Suricata service script" \
-		--license "GPL v2" \
+		--description "Observable Networks Suricata Distribution" \
+		--license "GNU General Public License v2.0" \
+		--url "https://github.com/obsrvbl/suricata-service" \
 		--depends libnet1 \
 		--depends libjansson4 \
 		--depends libcap2-bin \
@@ -69,8 +70,9 @@ rpm:
 		--category admin \
 		--force \
 		--rpm-compression bzip2 \
-		--description "Suricata service script" \
-		--license "GPL v2" \
+		--description "Observable Networks Suricata Distribution" \
+		--license "GNU General Public License v2.0" \
+		--url "https://github.com/obsrvbl/suricata-service" \
 		--depends jansson \
 		--depends libcap-ng \
 		--depends libpcap \
