@@ -3,7 +3,7 @@
 This project contains code to build .deb and .rpm packages for the [Suricata](http://suricata-ids.org/) IDS.
 The packages will allow you to install Suricata in a manner that is compatible with the [Observable Networks](https://observable.net) monitoring service.
 
-The .deb should work with Ubuntu 12.04 and 14.04.
+The .deb should work with Ubuntu 14.04 and 16.04.
 The .rpm should work with RHEL-compatible distributions (like CentOS). Versions 6 and 7 are supported.
 
 ## Build instructions

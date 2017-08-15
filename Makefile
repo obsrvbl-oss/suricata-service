@@ -16,7 +16,7 @@ build_libhtp:
 build_suricata: build_libhtp
 build_suricata: export PKG_CONFIG_PATH = ${LIBHTP_PREFIX}/lib/pkgconfig
 build_suricata:
-	mkdir -p ${TARGET_ROOT}/usr
+	mkdir -p ${TARGET_ROOT}/usr/share/doc/suricata/
 	mkdir -p ${TARGET_ROOT}/etc
 	mkdir -p ${TARGET_ROOT}/var
 	(cd suricata; ./autogen.sh)
@@ -31,6 +31,7 @@ build_suricata:
 			--disable-gccmarch-native)
 	LD_RUN_PATH="/usr/local/lib" make -C suricata
 	make -C suricata install-full DESTDIR=${TARGET_ROOT}
+	cp suricata/LICENSE ${TARGET_ROOT}/usr/share/doc/suricata/
 
 deb:
 	mkdir -p packaging/output
@@ -44,8 +45,9 @@ deb:
 		--category admin \
 		--force \
 		--deb-compression bzip2 \
-		--description "Suricata service script" \
-		--license "GPL v2" \
+		--description "Observable Networks Suricata Distribution" \
+		--license "GNU General Public License v2.0" \
+		--url "https://github.com/obsrvbl/suricata-service" \
 		--depends libnet1 \
 		--depends libjansson4 \
 		--depends libcap2-bin \
@@ -69,8 +71,9 @@ rpm:
 		--category admin \
 		--force \
 		--rpm-compression bzip2 \
-		--description "Suricata service script" \
-		--license "GPL v2" \
+		--description "Observable Networks Suricata Distribution" \
+		--license "GNU General Public License v2.0" \
+		--url "https://github.com/obsrvbl/suricata-service" \
 		--depends jansson \
 		--depends libcap-ng \
 		--depends libpcap \
