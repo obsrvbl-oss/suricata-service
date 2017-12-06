@@ -1,37 +1,17 @@
-clone:
-  recursive: true
-  depth: 500
-
-build:
-  image: obsrvbl/docker-images:suricata-$$SURICATA_IMAGE
-  commands:
-    - make build_suricata
-    - if [ $$SURICATA_IMAGE = "centos-6" ]; then make rpm EL_VERSION=6; elif [ $$SURICATA_IMAGE = "centos-7" ]; then make rpm EL_VERSION=7; else make deb; fi
+pipeline:
+  build:
+    image: obsrvbl/docker-images:suricata-${SURICATA_IMAGE}
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+    commands:
+      - make build_suricata
+      - if [ ${SURICATA_IMAGE} = "centos-6" ]; then make rpm EL_VERSION=6; elif [ ${SURICATA_IMAGE} = "centos-7" ]; then make rpm EL_VERSION=7; else make deb; fi
+      - pip install awscli
+      - aws s3 cp --region us-east-1 --recursive --acl public-read packaging/output/ s3://onstatic/suricata-service/${DRONE_BRANCH}/
 
 matrix:
   SURICATA_IMAGE:
     - centos-7
     - centos-6
     - ubuntu-14.04
-
-publish:
-  s3:
-    access_key: $$AWS_ACCESS_KEY
-    secret_key: $$AWS_SECRET_KEY
-    acl: "public-read"
-    region: "us-east-1"
-    bucket: "onstatic"
-    source: "packaging/output"
-    target: "suricata-service/$$BRANCH/"
-    recursive: true
-
-notify:
-  slack_blame:
-    token: $$SLACK_TOKEN
-    channel: "#github"
-    success:
-      icon: ":not-kirby:"
-      message: "Successful build!"
-    failure:
-      icon: ":trolleybus:"
-      message: "The build is broken."
