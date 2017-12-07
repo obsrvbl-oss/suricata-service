@@ -59,14 +59,14 @@ deb:
 		--deb-no-default-config-files \
 		root/=/
 
-rpm:
+rpm6:
 	mkdir -p packaging/output
 	fpm \
 		-s dir \
 		-t rpm \
 		-n suricata-service \
 		-v ${VERSION} \
-		-p packaging/output/suricata-service-${EL_VERSION}.rpm \
+		-p packaging/output/suricata-service-6.rpm \
 		-a ${ARCH} \
 		--category admin \
 		--force \
@@ -81,7 +81,32 @@ rpm:
 		--depends libyaml \
 		--depends pcre \
 		--depends zlib \
-		--depends python2.7 \
+		--depends python27 \
+		--after-install packaging/scripts/postinst.sh \
+		root/=/
+
+rpm7:
+	mkdir -p packaging/output
+	fpm \
+		-s dir \
+		-t rpm \
+		-n suricata-service \
+		-v ${VERSION} \
+		-p packaging/output/suricata-service-7.rpm \
+		-a ${ARCH} \
+		--category admin \
+		--force \
+		--rpm-compression bzip2 \
+		--description "Observable Networks Suricata Distribution" \
+		--license "GNU General Public License v2.0" \
+		--url "https://github.com/obsrvbl/suricata-service" \
+		--depends jansson \
+		--depends libcap-ng \
+		--depends libpcap \
+		--depends libnet \
+		--depends libyaml \
+		--depends pcre \
+		--depends zlib \
 		--after-install packaging/scripts/postinst.sh \
 		root/=/
 
