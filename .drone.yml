@@ -2,8 +2,8 @@ pipeline:
   build:
     image: obsrvbl/docker-images:suricata-${SURICATA_IMAGE}
     environment:
-      - LC_ALL=C.UTF-8
-      - LANG=C.UTF-8
+      - LC_ALL=en-us.UTF-8
+      - LANG=en-us.UTF-8
     commands:
       - make build_suricata
       - if [ ${SURICATA_IMAGE} = "centos-6" ]; then make rpm6; elif [ ${SURICATA_IMAGE} = "centos-7" ]; then make rpm7; else make deb; fi
