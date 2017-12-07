@@ -6,6 +6,8 @@ The packages will allow you to install Suricata in a manner that is compatible w
 The .deb should work with Ubuntu 14.04 and 16.04.
 The .rpm should work with RHEL-compatible distributions (like CentOS). Versions 6 and 7 are supported.
 
+For RHEL/CentOS 6, Python 2.7 is recommended. You may install the `python27` package from the [IUS repository](https://ius.io/GettingStarted/).
+
 ## Build instructions
 
 The packages to install are listed below. On RHEL / CentOS you will need to first install the [EPEL repository](https://fedoraproject.org/wiki/EPEL#How_can_I_use_these_extra_packages.3F) to get some of these packages. For more information on building Suricata, see the [Suricata wiki](https://redmine.openinfosecfoundation.org/projects/suricata/wiki/Suricata_Installation).
