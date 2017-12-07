@@ -15,9 +15,9 @@ matrix:
     - SURICATA_IMAGE: ubuntu-14.04
       ENV_LC_ALL: C.UTF-8
       ENV_LANG: C.UTF-8
+    - SURICATA_IMAGE: centos-6
+      ENV_LC_ALL: en_US.utf8
+      ENV_LANG: en_US.utf8
     - SURICATA_IMAGE: centos-7
       ENV_LC_ALL: en_US.utf8
       ENV_LANG: en_US.utf8
-    - SURICATA_IMAGE: centos-6
-      ENV_LC_ALL: en-us.UTF-8
-      ENV_LANG: en-us.UTF-8
