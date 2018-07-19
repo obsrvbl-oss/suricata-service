@@ -9,6 +9,8 @@ pipeline:
       - if [ ${SURICATA_IMAGE} = "centos-6" ]; then make rpm6; elif [ ${SURICATA_IMAGE} = "centos-7" ]; then make rpm7; else make deb; fi
       - pip install awscli
       - aws s3 cp --region us-east-1 --recursive --acl public-read packaging/output/ s3://onstatic/suricata-service/${DRONE_BRANCH}/
+    when:
+      event: push
 
 matrix:
   include:
