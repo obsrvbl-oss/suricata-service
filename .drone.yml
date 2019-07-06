@@ -2,7 +2,7 @@ pipeline:
   submodules:
     image: docker:git
     commands:
-      - git submodule update --recursive --remote
+      - git submodule update --init --recursive
 
   build:
     image: obsrvbl/docker-images:suricata-${SURICATA_IMAGE}
