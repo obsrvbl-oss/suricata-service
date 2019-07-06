@@ -1,5 +1,5 @@
 pipeline:
-  clone:
+  submodules:
     image: docker:git
     commands:
       - git submodule update --recursive --remote
