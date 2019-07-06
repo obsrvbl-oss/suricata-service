@@ -1,4 +1,9 @@
 pipeline:
+  clone:
+    image: docker:git
+    commands:
+      - git submodule update --recursive --remote
+
   build:
     image: obsrvbl/docker-images:suricata-${SURICATA_IMAGE}
     environment:
