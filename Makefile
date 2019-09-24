@@ -1,4 +1,4 @@
-VERSION := 0.01
+VERSION := 4.1.5
 TARGET_ROOT = $(shell pwd)/root
 LIBHTP_PREFIX = ${TARGET_ROOT}/usr/local
 ARCH ?= amd64
