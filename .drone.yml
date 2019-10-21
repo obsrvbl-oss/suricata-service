@@ -12,8 +12,7 @@ steps:
   image: obsrvbl/docker-images:suricata-centos-6.10
   commands:
   - source /root/.cargo/env
-  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make build_suricata
-  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make rpm6
+  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make build_suricata rpm6
 
 - name: build-centos-7
   image: obsrvbl/docker-images:suricata-centos-7.7
@@ -21,17 +20,12 @@ steps:
     LC_ALL: en_US.utf8
     LANG: en_US.utf8
   commands:
-  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make build_suricata
-  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make rpm7
+  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make build_suricata rpm7
 
 - name: build-ubuntu-16.04
   image: obsrvbl/docker-images:suricata-ubuntu-16.04
-  environment:
-    LC_ALL: C.UTF-8
-    LANG: C.UTF-8
   commands:
-  - make build_suricata
-  - make deb
+  - make build_suricata deb
 
 - name: publish
   image: plugins/s3
