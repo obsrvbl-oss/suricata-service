@@ -19,7 +19,7 @@ pipeline:
 
 matrix:
   include:
-    - SURICATA_IMAGE: ubuntu-14.04
+    - SURICATA_IMAGE: ubuntu-16.04
       ENV_LC_ALL: C.UTF-8
       ENV_LANG: C.UTF-8
     - SURICATA_IMAGE: centos-6
