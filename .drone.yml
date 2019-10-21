@@ -6,6 +6,7 @@ pipeline:
 
   build:
     image: obsrvbl/docker-images:suricata-${SURICATA_IMAGE}
+    pull: always
     environment:
       - LC_ALL=${ENV_LC_ALL}
       - LANG=${ENV_LANG}
