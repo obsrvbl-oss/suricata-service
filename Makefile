@@ -46,7 +46,6 @@ deb:
 		-a ${ARCH} \
 		--category admin \
 		--force \
-		--deb-compression bzip2 \
 		--description "Observable Networks Suricata Distribution" \
 		--license "GNU General Public License v2.0" \
 		--url "https://github.com/obsrvbl/suricata-service" \
