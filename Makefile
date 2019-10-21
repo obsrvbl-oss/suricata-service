@@ -1,4 +1,4 @@
-VERSION := 4.1.5
+VERSION := 5.0.0
 TARGET_ROOT = $(shell pwd)/root
 LIBHTP_PREFIX = ${TARGET_ROOT}/usr/local
 ARCH ?= amd64
@@ -28,9 +28,11 @@ build_suricata:
 			--enable-non-bundled-htp \
 			--enable-af-packet \
 			--disable-coccinelle \
+			--disable-suricata-update \
 			--disable-gccmarch-native)
 	LD_RUN_PATH="/usr/local/lib" make -C suricata
-	make -C suricata install-full DESTDIR=${TARGET_ROOT}
+	make -C suricata install DESTDIR=${TARGET_ROOT}
+	make -C suricata install-conf DESTDIR=${TARGET_ROOT}
 	cp suricata/LICENSE ${TARGET_ROOT}/usr/share/doc/suricata/
 
 deb:
@@ -44,7 +46,6 @@ deb:
 		-a ${ARCH} \
 		--category admin \
 		--force \
-		--deb-compression bzip2 \
 		--description "Observable Networks Suricata Distribution" \
 		--license "GNU General Public License v2.0" \
 		--url "https://github.com/obsrvbl/suricata-service" \

@@ -1,30 +1,40 @@
-pipeline:
-  submodules:
-    image: docker:git
-    commands:
-      - git submodule update --init --recursive
+---
+kind: pipeline
+name: default
 
-  build:
-    image: obsrvbl/docker-images:suricata-${SURICATA_IMAGE}
-    environment:
-      - LC_ALL=${ENV_LC_ALL}
-      - LANG=${ENV_LANG}
-    commands:
-      - make build_suricata
-      - if [ ${SURICATA_IMAGE} = "centos-6" ]; then make rpm6; elif [ ${SURICATA_IMAGE} = "centos-7" ]; then make rpm7; else make deb; fi
-      - pip install awscli
-      - aws s3 cp --region us-east-1 --recursive --acl public-read packaging/output/ s3://onstatic/suricata-service/${DRONE_BRANCH}/
-    when:
-      event: push
+steps:
+- name: submodules
+  image: docker:git
+  commands:
+  - git submodule update --init --recursive
 
-matrix:
-  include:
-    - SURICATA_IMAGE: ubuntu-14.04
-      ENV_LC_ALL: C.UTF-8
-      ENV_LANG: C.UTF-8
-    - SURICATA_IMAGE: centos-6
-      ENV_LC_ALL: en_US.utf8
-      ENV_LANG: en_US.utf8
-    - SURICATA_IMAGE: centos-7
-      ENV_LC_ALL: en_US.utf8
-      ENV_LANG: en_US.utf8
+- name: build-centos-6
+  image: obsrvbl/docker-images:suricata-centos-6.10
+  commands:
+  - source /root/.cargo/env
+  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make build_suricata rpm6
+
+- name: build-centos-7
+  image: obsrvbl/docker-images:suricata-centos-7.7
+  environment:
+    LC_ALL: en_US.utf8
+    LANG: en_US.utf8
+  commands:
+  - LC_ALL="en_US.utf8" LANG="en_US.utf8" make build_suricata rpm7
+
+- name: build-ubuntu-16.04
+  image: obsrvbl/docker-images:suricata-ubuntu-16.04
+  commands:
+  - make build_suricata deb
+
+- name: publish
+  image: plugins/s3
+  settings:
+    region: us-east-1
+    acl: public-read
+    source: packaging/output/*
+    strip_prefix: packaging/output/
+    bucket: onstatic
+    target: suricata-service/${DRONE_BRANCH}/
+  when:
+    event: push
