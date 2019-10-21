@@ -11,8 +11,8 @@ steps:
 - name: build-centos-6
   image: obsrvbl/docker-images:suricata-centos-6
   environment:
-    LC_ALL=en_US.utf8
-    LANG=en_US.utf8
+    LC_ALL: en_US.utf8
+    LANG: en_US.utf8
   commands:
   - make build_suricata
   - make rpm6
@@ -20,8 +20,8 @@ steps:
 - name: build-centos-7
   image: obsrvbl/docker-images:suricata-centos-7
   environment:
-    LC_ALL=en_US.utf8
-    LANG=en_US.utf8
+    LC_ALL: en_US.utf8
+    LANG: en_US.utf8
   commands:
   - make build_suricata
   - make rpm7
@@ -29,8 +29,8 @@ steps:
 - name: build-ubuntu-16.04
   image: obsrvbl/docker-images:suricata-ubuntu-16.04
   environment:
-    LC_ALL=C.UTF-8
-    LANG=C.UTF-8
+    LC_ALL: C.UTF-8
+    LANG: C.UTF-8
   commands:
   - make build_suricata
   - make deb
