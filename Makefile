@@ -31,7 +31,8 @@ build_suricata:
 			--disable-suricata-update \
 			--disable-gccmarch-native)
 	LD_RUN_PATH="/usr/local/lib" make -C suricata
-	make -C suricata install-full DESTDIR=${TARGET_ROOT}
+	make -C suricata install DESTDIR=${TARGET_ROOT}
+	make -C suricata install-conf DESTDIR=${TARGET_ROOT}
 	cp suricata/LICENSE ${TARGET_ROOT}/usr/share/doc/suricata/
 
 deb:
