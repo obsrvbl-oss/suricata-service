@@ -17,6 +17,17 @@ steps:
   - make build_suricata
   - make deb
 
+- name: build-centos-7
+  image: obsrvbl/docker-images:suricata-centos-7
+  pull: always
+  environment:
+    LC_ALL: en_US.utf8
+    LANG: en_US.utf8
+  commands:
+  - yum install -y cargo rustc
+  - make build_suricata
+  - make rpm7
+
 - name: build-centos-6
   image: obsrvbl/docker-images:suricata-centos-6
   pull: always
@@ -26,16 +37,6 @@ steps:
   commands:
   - make build_suricata
   - make rpm6
-
-- name: build-centos-7
-  image: obsrvbl/docker-images:suricata-centos-7
-  pull: always
-  environment:
-    LC_ALL: en_US.utf8
-    LANG: en_US.utf8
-  commands:
-  - make build_suricata
-  - make rpm7
 
 - name: publish
   image: plugins/s3
