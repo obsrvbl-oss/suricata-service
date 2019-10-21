@@ -15,6 +15,7 @@ steps:
     LC_ALL: en_US.utf8
     LANG: en_US.utf8
   commands:
+  - source /root/.cargo/env
   - make build_suricata
   - make rpm6
 
