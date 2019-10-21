@@ -8,14 +8,15 @@ steps:
   commands:
   - git submodule update --init --recursive
 
-- name: build-ubuntu-16.04
-  image: obsrvbl/docker-images:suricata-ubuntu-16.04
+- name: build-centos-6
+  image: obsrvbl/docker-images:suricata-centos-6.10
+  pull: always
   environment:
-    LC_ALL: C.UTF-8
-    LANG: C.UTF-8
+    LC_ALL: en_US.utf8
+    LANG: en_US.utf8
   commands:
   - make build_suricata
-  - make deb
+  - make rpm6
 
 - name: build-centos-7
   image: obsrvbl/docker-images:suricata-centos-7.7
@@ -27,15 +28,14 @@ steps:
   - make build_suricata
   - make rpm7
 
-- name: build-centos-6
-  image: obsrvbl/docker-images:suricata-centos-6
-  pull: always
+- name: build-ubuntu-16.04
+  image: obsrvbl/docker-images:suricata-ubuntu-16.04
   environment:
-    LC_ALL: en_US.utf8
-    LANG: en_US.utf8
+    LC_ALL: C.UTF-8
+    LANG: C.UTF-8
   commands:
   - make build_suricata
-  - make rpm6
+  - make deb
 
 - name: publish
   image: plugins/s3
