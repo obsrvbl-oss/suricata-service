@@ -13,6 +13,7 @@ steps:
   commands:
   - source /root/.cargo/env
   - yum install -y lz4-devel
+  - cargo install --force cbindgen
   - LC_ALL="en_US.utf8" LANG="en_US.utf8" make build_suricata rpm6
 
 - name: build-centos-7
