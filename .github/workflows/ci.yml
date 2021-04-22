@@ -11,7 +11,7 @@ on:
 jobs:
   build_ubuntu:
     name: Build Ubuntu 16.04
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     container: obsrvbl/docker-images:suricata-ubuntu-16.04
     steps:
       - name: Checkout
