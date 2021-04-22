@@ -1,0 +1,21 @@
+name: suricata-service CI
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request:
+
+jobs:
+  build_ubuntu:
+    runs-on: self-hosted
+    container: obsrvbl/docker-images:suricata-ubuntu-16.04
+    steps:
+    - name: Checkout repositories
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Build Ubuntu
+      run: make build_suricata deb
